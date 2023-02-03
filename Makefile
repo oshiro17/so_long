@@ -35,7 +35,7 @@ $(NAME) : $(OBJS)
 clean :
 	rm -f $(OBJS)
 	$(MAKE) clean -C $(MLX_DIR) 
-	$(MAKE) claen -c $(LIB_DIR)
+	$(MAKE) clean -C $(LIB_DIR)
 
 fclean : clean
 	rm -f $(NAME)

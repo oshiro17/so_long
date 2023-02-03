@@ -6,7 +6,7 @@
 /*   By: panti <panti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 06:34:53 by panti             #+#    #+#             */
-/*   Updated: 2023/02/04 06:48:13 by panti            ###   ########.fr       */
+/*   Updated: 2023/02/04 07:00:50 by panti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static char	*ft_get_line(char *save)
 
 	if (!save[0])
 		return (NULL);
-	if (ft_strchr(save, '\n'))
-		to_line = (char *)malloc(ft_strchr(save, '\n') - save + 2);
+	if (gnl_ft_strchr(save, '\n'))
+		to_line = (char *)malloc(gnl_ft_strchr(save, '\n') - save + 2);
 	else
-		to_line = (char *)malloc(ft_strlen(save) + 1);
+		to_line = (char *)malloc(gnl_ft_strlen(save) + 1);
 	if (!to_line)
 		return (free_null(&save));
 	i = 0;
@@ -60,7 +60,7 @@ static char	*ft_save(char *save, char **line)
 		i++;
 	if (!save[i])
 		return (free_null(&save));
-	s = (char *)malloc(ft_strlen(save) - i + 1);
+	s = (char *)malloc(gnl_ft_strlen(save) - i + 1);
 	if (!s)
 	{
 		free_null(&save);
@@ -84,13 +84,13 @@ static char	*buff_to_save(char *save, int fd)
 	buff = malloc(BUFFER_SIZE + 1UL);
 	if (!buff)
 		return (NULL);
-	while (!(ft_strchr(save, '\n')) && len > 0)
+	while (!(gnl_ft_strchr(save, '\n')) && len > 0)
 	{
 		len = read(fd, buff, BUFFER_SIZE);
 		if (len == -1)
 			return (free_null(&buff));
 		buff[len] = '\0';
-		save = ft_strjoin(save, buff);
+		save = gnl_ft_strjoin(save, buff);
 		if (!save)
 			break ;
 	}
