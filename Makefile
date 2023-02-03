@@ -1,6 +1,7 @@
 NAME = so_long
 SRCS = so_long.c \
        put_error_exit.c \
+	   check_error_map.c \
 
 MAKE = make
 
