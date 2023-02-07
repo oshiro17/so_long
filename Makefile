@@ -2,6 +2,7 @@ NAME = so_long
 SRCS = so_long.c \
        put_error_exit.c \
 	   check_error_map.c \
+	   get_map.c
 
 MAKE = make
 
@@ -20,7 +21,7 @@ OPT = -L/usr/X11R6/lib  -Imlx -lX11 -lXext -framework OpenGL -framework AppKit
 
 HEADER = so_long.h
 
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 OBJS = $(SRCS:.c=.o)
 

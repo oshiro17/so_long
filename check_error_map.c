@@ -1,30 +1,34 @@
 # include "so_long.h"
 
-void	check_extention(char *map)
+void	check_extention(char *map_name)
 {
 	int			i;
 	int			k;
-	const char	*extention = ".xpm";
+	const char	*extention = ".ber";
 
 	i = 0;
 	k = 0;
-	while (map[i] && map[i] != '.')
+	while (map_name[i] && map_name[i] != '.')
 		i++;
-	while (map[i + k])
+	while (map_name[i + k])
 	{
-		if (map[i + k] == extention[k])
+		if (map_name[i + k] == extention[k])
 			k++;
 		else
-			put_error_exit("extention is not .xpm");
+			put_error_exit("extention is not .ber");
 	}
 	if (k != 4)
-		put_error_exit("extention is not .xpm");
+		put_error_exit("extention is not .ber");
 }
 
-void	check_error_map(char *map)
+void	check_error_map(char *map_name, t_map **map)
 {
-	int fd;
-
-	check_extention(map);
-	fd = open(map,O_RDONLY)
+	check_extention(map_name);
+	get_map(map_name,map);
+	
+	while((*map)->next)
+	{
+		ft_printf("%s\n",(*map)->line);
+		(*map) = (*map)->next;
+	}
 }

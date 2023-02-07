@@ -34,7 +34,16 @@
 #define WALL "./img/wall_rock.xpm"
 #define ROCK "./img/stop_rock.xpm"
 #define EXIT "./img/exit.xpm"
-int		main(int argc, char **argv);
-void	put_error_exit(char *error_str);
-void	check_error_map(char *map);
+typedef struct s_map
+{
+	char 			*line;
+	struct	s_map	*next;
+	struct	s_map	*pre;
+}	t_map;
+
+int			main(int argc, char **argv);
+void		put_error_exit(char *error_str);
+void		check_error_map(char *map_name, t_map **map);
+void		get_map(char *map_name,t_map **map);
+
 #endif
