@@ -31,17 +31,16 @@ void	make_list(char *line, t_map **map)
 	last->next->pre = last;
 }
 
-void get_map(char *map_name, t_map **map)
+void get_map(char *map_name, t_map **map,t_info *info)
 {
 	char	*line;
 	int		fd;
 	int		i;
-	// size_t		line_len;
 
-	// line_len = 0;
 	line = NULL;
 	fd = open(map_name, O_RDONLY);
 	i = -1;
+	info->height = 0;
 	while (line || i == -1)
 	{
 		i = 0;
@@ -52,10 +51,10 @@ void get_map(char *map_name, t_map **map)
 			i++;
 		line[i] = '\0';
 		make_list(line,map);
-		// if (line_len != 0 || line_len != ft_strlen(line))
-		// 	put_error_exit("not rectangle");
-		// line_len = ft_strlen(line);
+		info->height = info->height + 1;
 	}
+	if (info->height < 3)
+		put_error_exit("height < 3");
 	return ;
 	// t_map *test;
 	// test = map;
