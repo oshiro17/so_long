@@ -22,6 +22,7 @@ OPT = -L/usr/X11R6/lib  -Imlx -lX11 -lXext -framework OpenGL -framework AppKit
 HEADER = so_long.h
 
 CFLAGS = -Wall -Wextra -Werror
+DEBUG_FLAGS = -g -fsanitize=address -fsanitize=undefined
 
 OBJS = $(SRCS:.c=.o)
 
@@ -45,5 +46,8 @@ fclean : clean
 	rm -f $(LIB_LIB)
 
 re : fclean all
+
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: re
 
 .PHONY : all clean fclean re
