@@ -6,6 +6,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include "minilibx_remote/mlx.h"
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
@@ -34,6 +35,7 @@
 #define WALL "./img/wall_rock.xpm"
 #define ROCK "./img/stop_rock.xpm"
 #define EXIT "./img/exit.xpm"
+
 typedef struct s_map
 {
 	char 			*line;
@@ -41,9 +43,22 @@ typedef struct s_map
 	struct	s_map	*pre;
 }	t_map;
 
+typedef struct s_info
+{
+	int	height;
+	int	width;
+	int	zero_num;
+	int	one_num;
+	int	c_num;
+	int	e_num;
+	int	p_num;
+	int	start_x;
+	int	start_y;
+}	t_info;
+
 int			main(int argc, char **argv);
 void		put_error_exit(char *error_str);
-void		check_error_map(char *map_name, t_map **map);
-void		get_map(char *map_name,t_map **map);
+void		check_error_map(char *map_name, t_map **map,t_info *info);
+void		get_map(char *map_name,t_map **map, t_info *info);
 
 #endif
