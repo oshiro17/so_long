@@ -6,7 +6,7 @@
 /*   By: panti <panti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 21:48:10 by panti             #+#    #+#             */
-/*   Updated: 2023/02/09 23:41:30 by panti            ###   ########.fr       */
+/*   Updated: 2023/02/09 23:49:36 by panti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int	main (int argc, char **argv)
 	img3 = mlx_xpm_file_to_image(mlx, "./img/floor.xpm", &img_width, &img_height);
 	img4 = mlx_xpm_file_to_image(mlx, "./img/human.xpm", &img_width, &img_height);
 	img5 = mlx_xpm_file_to_image(mlx, "./img/block.xpm", &img_width, &img_height);
-	mlx_put_image_to_window(mlx, win, img, IMG_SIZE*0, IMG_SIZE*0);
-	mlx_put_image_to_window(mlx, win, img2, IMG_SIZE*1, IMG_SIZE*0);
-	mlx_put_image_to_window(mlx, win, img3, IMG_SIZE*2, IMG_SIZE*0);
-	mlx_put_image_to_window(mlx, win, img4, IMG_SIZE*3, IMG_SIZE*1);
-	mlx_put_image_to_window(mlx, win, img5, IMG_SIZE*4, IMG_SIZE*1);
+	mlx_put_image_to_window(mlx, win, img, IMG_SIZE * 0, IMG_SIZE * 0);
+	mlx_put_image_to_window(mlx, win, img2, IMG_SIZE * 1, IMG_SIZE * 0);
+	mlx_put_image_to_window(mlx, win, img3, IMG_SIZE * 2, IMG_SIZE * 0);
+	mlx_put_image_to_window(mlx, win, img4, IMG_SIZE * 3, IMG_SIZE * 1);
+	mlx_put_image_to_window(mlx, win, img5, IMG_SIZE * 4, IMG_SIZE * 1);
 	mlx_loop(mlx);
 	return (0);
 	exit (0);
