@@ -53,8 +53,6 @@ void get_map(char *map_name, t_map **map,t_info *info)
 		make_list(line,map);
 		info->height = info->height + 1;
 	}
-	if (info->height < 3)
-		put_error_exit("height < 3");
 	return ;
 	// t_map *test;
 	// test = map;

@@ -35,8 +35,6 @@ void	check_width(t_map *map, t_info *info)
 			put_error_exit("not ractangle");
 		map = map->next;
 	}
-	if (info->width < 5)
-		put_error_exit("width < 5");
 }
 
 void check_line(char *line, t_info *info)
