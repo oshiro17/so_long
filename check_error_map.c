@@ -187,9 +187,9 @@ void	dfs(char *map_dfs, int x, int y, t_info *info)
 		else
 			dfs(map_dfs, x, y + 1, info);
 	}
-	if (is_not_one(map_dfs, x + 1, y, info))
+	if (is_not_one(map_dfs, x, y - 1, info))
 	{
-		if (is_e(map_dfs, x + 1, y, info))
+		if (is_e(map_dfs, x, y -1, info))
 		{	
 			map_dfs[y * info->width + x + 1] = '1';
 			dfs(map_dfs, x, y, info);
@@ -227,7 +227,7 @@ void	check_error_map(char *map_name, t_map **map, t_info *info)
 {
 	check_extention(map_name);
 	get_map(map_name,map,info);
-	// check_width(*map,info);
-	// check_component(*map,info);
-	// check_valid_path(*map, info);
+	check_width(*map,info);
+	check_component(*map,info);
+	check_valid_path(*map, info);
 }
