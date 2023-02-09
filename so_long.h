@@ -27,14 +27,14 @@
 #define S 115
 #define D 100
 # endif
-
+#define IMG_SIZE 32
 // 画像の定義
-#define FLOOR "./img/Floor.xpm"
-#define CHARA "./img/human_2.xpm"
-#define COIN "./img/coin_floor.xpm"
-#define WALL "./img/wall_rock.xpm"
-#define ROCK "./img/stop_rock.xpm"
-#define EXIT "./img/exit.xpm"
+// #define FLOOR "./img/Floor.xpm"
+// #define CHARA "./img/human_2.xpm"
+// #define COIN "./img/coin_floor.xpm"
+// #define WALL "./img/wall_rock.xpm"
+// #define ROCK "./img/stop_rock.xpm"
+// #define EXIT "./img/exit.xpm"
 
 typedef struct s_map
 {

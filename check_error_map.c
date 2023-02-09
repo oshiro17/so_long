@@ -227,7 +227,7 @@ void	check_error_map(char *map_name, t_map **map, t_info *info)
 {
 	check_extention(map_name);
 	get_map(map_name,map,info);
-	check_width(*map,info);
-	check_component(*map,info);
-	check_valid_path(*map, info);
+	// check_width(*map,info);
+	// check_component(*map,info);
+	// check_valid_path(*map, info);
 }
