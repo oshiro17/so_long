@@ -153,7 +153,7 @@ bool is_e(char *map_dfs, int x, int y, t_info *info)
 
 void	dfs(char *map_dfs, int x, int y, t_info *info)
 {
-	printf("%s\n",map_dfs);
+	// printf("%s\n",map_dfs);
 	map_dfs[y * info->width + x] = '1';
 	if (is_not_one(map_dfs, x + 1, y, info))
 	{
