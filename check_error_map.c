@@ -157,42 +157,42 @@ void	dfs(char *map_dfs, int x, int y, t_info *info)
 	map_dfs[y * info->width + x] = '1';
 	if (is_not_one(map_dfs, x + 1, y, info))
 	{
-		if (is_e(map_dfs, x + 1, y, info))
-		{	
-			map_dfs[y * info->width + x + 1] = '1';
-			dfs(map_dfs, x, y, info);
-		}
-		else
+		// if (is_e(map_dfs, x + 1, y, info))
+		// {	
+		// 	map_dfs[y * info->width + x + 1] = '1';
+		// 	dfs(map_dfs, x, y, info);
+		// }
+		// else
 			dfs(map_dfs, x + 1, y, info);
 	}
 	if (is_not_one(map_dfs, x - 1, y, info))
 	{
-		if (is_e(map_dfs, x - 1, y, info))
-		{	
-			map_dfs[y * info->width + x - 1] = '1';
-			dfs(map_dfs, x, y, info);
-		}
-		else
+		// if (is_e(map_dfs, x - 1, y, info))
+		// {	
+		// 	map_dfs[y * info->width + x - 1] = '1';
+		// 	dfs(map_dfs, x, y, info);
+		// }
+		// else
 			dfs(map_dfs, x - 1, y, info);
 	}
 	if (is_not_one(map_dfs, x, y + 1, info))
 	{
-		if (is_e(map_dfs, x, y + 1, info))
-		{	
-			map_dfs[y * info->width + x + 1] = '1';
-			dfs(map_dfs, x, y, info);
-		}	
-		else
+		// if (is_e(map_dfs, x, y + 1, info))
+		// {	
+		// 	map_dfs[y * info->width + x + 1] = '1';
+		// 	dfs(map_dfs, x, y, info);
+		// }	
+		// else
 			dfs(map_dfs, x, y + 1, info);
 	}
 	if (is_not_one(map_dfs, x, y - 1, info))
 	{
-		if (is_e(map_dfs, x, y -1, info))
-		{	
-			map_dfs[y * info->width + x + 1] = '1';
-			dfs(map_dfs, x, y, info);
-		}	
-		else
+		// if (is_e(map_dfs, x, y -1, info))
+		// {	
+		// 	map_dfs[y * info->width + x + 1] = '1';
+		// 	dfs(map_dfs, x, y, info);
+		// }	
+		// else
 			dfs(map_dfs, x, y - 1, info);
 	}
 }

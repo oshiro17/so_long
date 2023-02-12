@@ -61,8 +61,6 @@ typedef struct s_info
 	void *floor;
 	void *human;
 	void *block;
-	int img_width;
-	int img_height;
 }	t_info;
 
 int			main(int argc, char **argv);
