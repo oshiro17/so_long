@@ -44,16 +44,19 @@ void get_map(char *map_name, t_map **map,t_info *info)
 	info->height = 0;
 	while (line || i == -1)
 	{
-		i = 0;
 		line = get_next_line(fd);
-		if (!line)
+		if (!line && i == -1)
+			put_error_exit("中身なし\n");
+		else if (!line)
 			break ;
+		i = 0;
 		while (line[i] != '\n' && line[i] != '\0')
 			i++;
 		line[i] = '\0';
 		make_list(line,map);
 		info->height = info->height + 1;
 	}
+	
 	// t_map *map_tmp;
 	// map_tmp = (*map);
 	// printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
