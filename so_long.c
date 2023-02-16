@@ -6,7 +6,7 @@
 /*   By: panti <panti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 21:48:10 by panti             #+#    #+#             */
-/*   Updated: 2023/02/16 18:36:20 by panti            ###   ########.fr       */
+/*   Updated: 2023/02/16 19:07:22 by panti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,13 @@ void	put_initial(t_info *info)
 	info->start_y = 0;
 }
 
-void	first_print_image(t_map *map, t_info info)
+void	first_print_image(t_info info)
 {
 	int	x;
 	int y;
+	t_map *map;
 
+	map = info.map;
 	x = 0;
 	y = 0;
 	while (y < info.height)
@@ -76,27 +78,26 @@ void get_map_info(t_info *info)
 
 int	main (int argc, char **argv)
 {
-	t_map	*map;
 	t_info	info;
 
 
-	map = malloc(sizeof(t_map));
+	info.map = malloc(sizeof(t_map));
 	put_initial(&info);
-	map->line = NULL;
-	map->next = NULL;
-	map->pre = NULL;
+	info.map->line = NULL;
+	info.map->next = NULL;
+	info.map->pre = NULL;
 	if (argc < 2)
 		put_error_exit("no map.");
 	if (argc > 2)
 		put_error_exit("too many arguments");
-	check_error_map(argv[1], &map, &info);
-	// while(map->next)
+	check_error_map(argv[1], &(info.map), &info);
+	// while(info.map->next)
 	// {
-	// 	printf("%s\n",map->line);
-	// 	map= map->next;
+	// 	printf("%s\n",info.map->line);
+	// 	info.map = info.map->next;
 	// }
 	get_map_info(&info);
-	first_print_image(map,info);
+	first_print_image(info);
 	mlx_loop(info.mlx);
 	return (0);
 	exit (0);

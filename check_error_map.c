@@ -146,10 +146,8 @@ bool	is_not_one(char *map_dfs, int x, int y, t_info *info)
 bool is_e(char *map_dfs, int x, int y, t_info *info)
 {
 	if (map_dfs[y * info->width + x] == 'E')
-	{
-		printf("is e きた");	
 		return (true);
-	}return (false);	
+	return (false);	
 };
 
 void	dfs(char *map_dfs, int x, int y, t_info *info)
@@ -225,8 +223,12 @@ void	check_valid_path(t_map *map, t_info *info)
 void	check_error_map(char *map_name, t_map **map, t_info *info)
 {
 	check_extention(map_name);
+printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
 	get_map(map_name,map,info);
+printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
 	check_width(*map,info);
+printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
 	check_component(*map,info);
+printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
 	check_valid_path(*map, info);
 }

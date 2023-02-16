@@ -54,5 +54,13 @@ void get_map(char *map_name, t_map **map,t_info *info)
 		make_list(line,map);
 		info->height = info->height + 1;
 	}
+	// t_map *map_tmp;
+	// map_tmp = (*map);
+	// printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
+	// while(map_tmp)
+	// {
+	// 	printf("%s",map_tmp->line);
+	// 	map_tmp=map_tmp->next;
+	// } 
 	return ;
 }
