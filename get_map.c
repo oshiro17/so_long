@@ -36,9 +36,10 @@ void get_map(char *map_name, t_map **map,t_info *info)
 	char	*line;
 	int		fd;
 	int		i;
-
 	line = NULL;
 	fd = open(map_name, O_RDONLY);
+	if (fd < 0)
+		put_error_exit("open errpr\n");
 	i = -1;
 	info->height = 0;
 	while (line || i == -1)
@@ -54,11 +55,4 @@ void get_map(char *map_name, t_map **map,t_info *info)
 		info->height = info->height + 1;
 	}
 	return ;
-	// t_map *test;
-	// test = map;
-	// while (test->next)
-	// {
-	// 	printf("%s\n",test->line);
-	// 	test = test->next;
-	// }
 }

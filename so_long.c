@@ -6,7 +6,7 @@
 /*   By: panti <panti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 21:48:10 by panti             #+#    #+#             */
-/*   Updated: 2023/02/12 20:03:45 by panti            ###   ########.fr       */
+/*   Updated: 2023/02/16 18:36:20 by panti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	first_print_image(t_map *map, t_info info)
 				mlx_put_image_to_window(info.mlx, info.win, info.human, IMG_SIZE * x , IMG_SIZE * y);
 			x++;
 		}
+		map = map->next;
 		y++;
 	}
 }
@@ -95,7 +96,7 @@ int	main (int argc, char **argv)
 	// 	map= map->next;
 	// }
 	get_map_info(&info);
-	// first_print_image(map,info);
+	first_print_image(map,info);
 	mlx_loop(info.mlx);
 	return (0);
 	exit (0);
