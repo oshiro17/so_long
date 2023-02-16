@@ -26,7 +26,6 @@ void	check_extention(char *map_name)
 void	check_width(t_map *map, t_info *info)
 {
 	int height;
-
 	height = info->height;
 	info->width = (int)ft_strlen(map->line);
 	while(height--)
@@ -147,9 +146,11 @@ bool	is_not_one(char *map_dfs, int x, int y, t_info *info)
 bool is_e(char *map_dfs, int x, int y, t_info *info)
 {
 	if (map_dfs[y * info->width + x] == 'E')
+	{
+		printf("is e きた");	
 		return (true);
-	return (false);	
-}
+	}return (false);	
+};
 
 void	dfs(char *map_dfs, int x, int y, t_info *info)
 {
@@ -157,42 +158,42 @@ void	dfs(char *map_dfs, int x, int y, t_info *info)
 	map_dfs[y * info->width + x] = '1';
 	if (is_not_one(map_dfs, x + 1, y, info))
 	{
-		// if (is_e(map_dfs, x + 1, y, info))
-		// {	
-		// 	map_dfs[y * info->width + x + 1] = '1';
-		// 	dfs(map_dfs, x, y, info);
-		// }
-		// else
+		if (is_e(map_dfs, x + 1, y, info))
+		{	
+			map_dfs[y * info->width + x + 1] = '1';
+			dfs(map_dfs, x, y, info);
+		}
+		else
 			dfs(map_dfs, x + 1, y, info);
 	}
 	if (is_not_one(map_dfs, x - 1, y, info))
 	{
-		// if (is_e(map_dfs, x - 1, y, info))
-		// {	
-		// 	map_dfs[y * info->width + x - 1] = '1';
-		// 	dfs(map_dfs, x, y, info);
-		// }
-		// else
+		if (is_e(map_dfs, x - 1, y, info))
+		{	
+			map_dfs[y * info->width + x - 1] = '1';
+			dfs(map_dfs, x, y, info);
+		}
+		else
 			dfs(map_dfs, x - 1, y, info);
 	}
 	if (is_not_one(map_dfs, x, y + 1, info))
 	{
-		// if (is_e(map_dfs, x, y + 1, info))
-		// {	
-		// 	map_dfs[y * info->width + x + 1] = '1';
-		// 	dfs(map_dfs, x, y, info);
-		// }	
-		// else
+		if (is_e(map_dfs, x, y + 1, info))
+		{	
+			map_dfs[(y + 1) * info->width + x] = '1';
+			dfs(map_dfs, x, y, info);
+		}	
+		else
 			dfs(map_dfs, x, y + 1, info);
 	}
 	if (is_not_one(map_dfs, x, y - 1, info))
 	{
-		// if (is_e(map_dfs, x, y -1, info))
-		// {	
-		// 	map_dfs[y * info->width + x + 1] = '1';
-		// 	dfs(map_dfs, x, y, info);
-		// }	
-		// else
+		if (is_e(map_dfs, x, y - 1, info))
+		{	
+			map_dfs[y - 1 * info->width + x] = '1';
+			dfs(map_dfs, x, y, info);
+		}	
+		else
 			dfs(map_dfs, x, y - 1, info);
 	}
 }
@@ -222,10 +223,16 @@ void	check_valid_path(t_map *map, t_info *info)
 }
 
 void	check_error_map(char *map_name, t_map **map, t_info *info)
-{
+{printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
 	check_extention(map_name);
+	
+printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
 	get_map(map_name,map,info);
+printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
 	check_width(*map,info);
+printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
 	check_component(*map,info);
+printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
 	check_valid_path(*map, info);
+printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
 }
