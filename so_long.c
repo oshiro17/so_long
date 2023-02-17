@@ -89,7 +89,7 @@ int	main (int argc, char **argv)
 	get_map_info(&info);
 	// first_print_image(info);
 	mlx_loop_hook(info.mlx, first_print_image, &info);
-
+	mlx_hook(info.win, 2, 1L << 0, key_press, &info);
 	mlx_loop(info.mlx);
 	return (0);
 	exit (0);

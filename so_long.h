@@ -68,5 +68,6 @@ int			main(int argc, char **argv);
 void		put_error_exit(char *error_str);
 void		check_error_map(char *map_name, t_map **map,t_info *info);
 void		get_map(char *map_name,t_map **map, t_info *info);
+int			key_press(int keycode, t_info *info);
 
 #endif

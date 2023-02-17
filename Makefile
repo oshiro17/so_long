@@ -2,7 +2,8 @@ NAME = so_long
 SRCS = so_long.c \
        put_error_exit.c \
 	   check_error_map.c \
-	   get_map.c
+	   get_map.c \
+	   key_press.c
 
 MAKE = make
 
