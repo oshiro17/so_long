@@ -46,6 +46,7 @@ typedef struct s_map
 typedef struct s_info
 {
 	struct s_map *map;
+	int get_c;
 	int	height;
 	int	width;
 	int	zero_num;

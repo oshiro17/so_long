@@ -20,10 +20,22 @@ void go_up(t_info *info)
 		map->next->line[info->start_x] = '0';
 		info->start_y = info->start_y - 1;
 	}
-	// if ((*map)->line[info->start_x] == 'E')
-	// {printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);}
-	// if ((*map)->line[info->start_x] == 'C')
-	// {	printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);}
+	if (map->line[info->start_x] == 'E')
+	{
+		if (info->get_c == info->c_num)
+		{
+			ft_printf("乙乙");
+			exit(0);
+		}
+		return;
+	}
+	if (map->line[info->start_x] == 'C')
+	{
+		map->line[info->start_x] = 'P';
+		map->next->line[info->start_x] = '0';
+		info->start_y = info->start_y - 1;
+		info->get_c = info->get_c + 1;
+	}
 }
 
 int key_press(int keycode,t_info *info)

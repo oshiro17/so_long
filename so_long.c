@@ -18,6 +18,7 @@ void	put_initial(t_info *info)
 	info->win = NULL;
 	info->start_x = 0;
 	info->start_y = 0;
+	info->get_c = 0;
 }
 
 int	first_print_image(t_info *info)
