@@ -81,15 +81,17 @@ int	main (int argc, char **argv)
 	if (argc > 2)
 		put_error_exit("too many arguments");
 	check_error_map(argv[1], &(info.map), &info);
-	// while(info.map->next)
-	// {
-	// 	printf("%s\n",info.map->line);
-	// 	info.map = info.map->next;
-	// }
 	get_map_info(&info);
 	// first_print_image(info);
 	mlx_loop_hook(info.mlx, first_print_image, &info);
+
 	mlx_hook(info.win, 2, 1L << 0, key_press, &info);
+    // while(info.map->next)
+    // {
+    //     printf("%s\n",info.map->line);
+    //     info.map = info.map->next;
+    //}
+	// printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
 	mlx_loop(info.mlx);
 	return (0);
 	exit (0);
