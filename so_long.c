@@ -20,36 +20,38 @@ void	put_initial(t_info *info)
 	info->start_y = 0;
 }
 
-void	first_print_image(t_info info)
+int	first_print_image(t_info *info)
 {
 	int	x;
 	int y;
 	t_map *map;
 
-	map = info.map;
+	map = info->map;
 	x = 0;
 	y = 0;
-	while (y < info.height)
+	while (y < info->height)
 	{
 		x = 0;
-		while (x < info.width)
+		while (x < info->width)
 		{
 			if (map->line[x] == '1')
-				mlx_put_image_to_window(info.mlx, info.win, info.block, IMG_SIZE * x , IMG_SIZE * y);
+				mlx_put_image_to_window(info->mlx, info->win, info->block, IMG_SIZE * x , IMG_SIZE * y);
 			else if(map->line[x] == '0')
-				mlx_put_image_to_window(info.mlx, info.win, info.floor , IMG_SIZE * x , IMG_SIZE * y);
+				mlx_put_image_to_window(info->mlx, info->win, info->floor , IMG_SIZE * x , IMG_SIZE * y);
 			else if (map->line[x] == 'E')
-				mlx_put_image_to_window(info.mlx, info.win, info.exit, IMG_SIZE * x , IMG_SIZE * y);
+				mlx_put_image_to_window(info->mlx, info->win, info->exit, IMG_SIZE * x , IMG_SIZE * y);
 			else if (map->line[x] == 'C')
-				mlx_put_image_to_window(info.mlx, info.win, info.coin, IMG_SIZE * x , IMG_SIZE * y);
+				mlx_put_image_to_window(info->mlx, info->win, info->coin, IMG_SIZE * x , IMG_SIZE * y);
 			else if (map->line[x] == 'P')
-				mlx_put_image_to_window(info.mlx, info.win, info.human, IMG_SIZE * x , IMG_SIZE * y);
+				mlx_put_image_to_window(info->mlx, info->win, info->human, IMG_SIZE * x , IMG_SIZE * y);
 			x++;
 		}
 		map = map->next;
 		y++;
 	}
+	return (0);
 }
+
 void get_map_info(t_info *info)
 {
 	int img_width;
@@ -85,7 +87,9 @@ int	main (int argc, char **argv)
 	// 	info.map = info.map->next;
 	// }
 	get_map_info(&info);
-	first_print_image(info);
+	// first_print_image(info);
+	mlx_loop_hook(info.mlx, first_print_image, &info);
+
 	mlx_loop(info.mlx);
 	return (0);
 	exit (0);

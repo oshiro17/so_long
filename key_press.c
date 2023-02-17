@@ -22,9 +22,7 @@ char up_is_block(t_info *info)
 	if (map->line[up_x] == '0')
 		return ('0');
 }
-}
-}
-}
+
 
 void	go_up(t_info *info)
 {

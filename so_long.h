@@ -12,7 +12,7 @@
 # include "libft/libft.h"
 // キーボードの定義
 
-#define CLUSTER
+// #define CLUSTER
 
 #ifdef CLUSTER
 #  define ESC 53
