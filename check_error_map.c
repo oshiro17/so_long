@@ -15,13 +15,13 @@ void	check_extention(char *map_name)
 	while (map_name[i + k])
 	{
 		if (map_name[i + k] != extention[k])
-			put_error_exit("extention is not .ber");;
-		else if (map_name[i + k] == '.' && k == 4)
+			put_error_exit("extention is not .ber");
+		k++;
+		if (map_name[i + k] == '.' && k == 4)
 		{
 			i = k + i;
 			k = 0;
 		}
-		k++;
 	}
 	if (k != 4)
 		put_error_exit("extention is not .ber");
@@ -30,6 +30,7 @@ void	check_extention(char *map_name)
 void	check_width(t_map *map, t_info *info)
 {
 	int height;
+
 	height = info->height;
 	info->width = (int)ft_strlen(map->line);
 	while(height--)
@@ -154,10 +155,40 @@ bool is_e(char *map_dfs, int x, int y, t_info *info)
 	return (false);	
 };
 
+// void	utils_dfs(char	*map_dfs, int x, int y, t_map info, char flag)
+// {
+// 	int	go_x;
+// 	int go_y;
+
+// 	if (flag = 'R' || flag = 'L')
+// 		go_y = y;
+// 	if (flag = 'R')
+// 		go_x = x + 1;
+// 	if (flag = L)
+// 		go_x = x - 1;
+// 	if (flag = 'T'|| flag = 'B')
+// 		go_x = x;
+// 	if(flag = 'T')
+// 		go_y = y - 1;
+// 	if (flag = 'B')
+// 		go_y = y + 1;
+// 	if (is_not_one(map_dfs, go_x, go_y, info))
+// 	{
+// 		if (is_e(map_dfs, go_x, go_y, info))
+// 		{
+// 			map_dfs[go_y * info->width + go_x] = '1';
+// 			dfs(map_dfs, x, y, info);	
+// 		}
+// 		else
+// 			dfs(map_dfs, go_x, go_y, info);
+// 	}
+// }
+
 void	dfs(char *map_dfs, int x, int y, t_info *info)
 {
 	// printf("%s\n",map_dfs);
 	map_dfs[y * info->width + x] = '1';
+	utils_dfs(map_dfs, x, y, info, 'R')
 	if (is_not_one(map_dfs, x + 1, y, info))
 	{
 		if (is_e(map_dfs, x + 1, y, info))
