@@ -1,52 +1,59 @@
 #include "so_long.h"
 
-void go_up(t_info *info)
+void move_player(t_info *info, int x, int y)
 {
-	int up_y;
+	int go_x;
+	int go_y;
 	t_map *map;
+	int	i;
 
+	i = 0;
 	map = info->map;
-	up_y = info->start_y - 1;
-	while (up_y--)
+	go_x = info->start_x + x;
+	go_y = info->start_y + y;
+	while (i < go_y)
+	{
 		map = map->next;
-	printf("%c\n",map->line[info->start_x]);
-	if (map->line[info->start_x] == '1')
-	{
-		return ;
+		i++;
 	}
-	if (map->line[info->start_x] == '0')
+	if (map->line[go_x] != '1')
 	{
-		map->line[info->start_x] = 'P';
-		map->next->line[info->start_x] = '0';
-		info->start_y = info->start_y - 1;
-	}
-	if (map->line[info->start_x] == 'E')
-	{
-		if (info->get_c == info->c_num)
+		if (map->line[go_x] == 'E' && info->get_c == info->c_num)
+			ft_printf("クリア");
+		else if (map->line[go_x] == 'E')
+			return;
+		else
 		{
-			ft_printf("乙乙");
-			exit(0);
+			if (map->line[go_x] == 'C')
+				info->get_c = info->get_c + 1;
+			map->line[go_x] = 'P';
+			printf("x%d:y%d:%c\n", go_x, go_y, map->line[go_x]);
+
+			if (y == 1)
+				map = map->pre;
+			if (y == -1)
+				map = map->next;
+			map->line[info->start_x] = '0';
+			info->start_x = go_x;
+			info->start_y = go_y;
 		}
-		return;
-	}
-	if (map->line[info->start_x] == 'C')
-	{
-		map->line[info->start_x] = 'P';
-		map->next->line[info->start_x] = '0';
-		info->start_y = info->start_y - 1;
-		info->get_c = info->get_c + 1;
 	}
 }
 
-int key_press(int keycode,t_info *info)
+int key_press(int keycode, t_info *info)
 {
-	printf("%d\n",keycode);
 	if (keycode == ESC)
 	{
 		mlx_destroy_window(info->mlx, info->win);
 		exit(0);
 	}
-	if (keycode == W)
-		go_up(info);
-	return(0);
+	else if (keycode == W)
+		move_player(info, 0, -1);
+	else if (keycode == A)
+		move_player(info, -1, 0);
+	else if (keycode == S)
+		move_player(info, 0, 1);
+	else if (keycode == D)
+		move_player(info, 1, 0);
+	return (0);
 }
