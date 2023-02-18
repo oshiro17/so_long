@@ -16,13 +16,19 @@ void	check_extention(char *map_name)
 	{
 		if (map_name[i + k] == extention[k])
 			k++;
+		else if (map_name[i + k] == '.' && k == 4)
+		{
+			i = k + i;
+			k = 0;
+		}
 		else
 			put_error_exit("extention is not .ber");
 	}
 	if (k != 4)
+	{
 		put_error_exit("extention is not .ber");
+	}
 }
-
 void	check_width(t_map *map, t_info *info)
 {
 	int height;
