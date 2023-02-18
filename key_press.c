@@ -19,7 +19,7 @@ void move_player(t_info *info, int x, int y)
 	if (map->line[go_x] != '1')
 	{
 		if (map->line[go_x] == 'E' && info->get_c == info->c_num)
-			ft_printf("クリア");
+			destroy_win(info);
 		else if (map->line[go_x] == 'E')
 			return;
 		else
@@ -27,8 +27,6 @@ void move_player(t_info *info, int x, int y)
 			if (map->line[go_x] == 'C')
 				info->get_c = info->get_c + 1;
 			map->line[go_x] = 'P';
-			printf("x%d:y%d:%c\n", go_x, go_y, map->line[go_x]);
-
 			if (y == 1)
 				map = map->pre;
 			if (y == -1)
@@ -43,10 +41,7 @@ void move_player(t_info *info, int x, int y)
 int key_press(int keycode, t_info *info)
 {
 	if (keycode == ESC)
-	{
-		mlx_destroy_window(info->mlx, info->win);
-		exit(0);
-	}
+		destroy_win(info);
 	else if (keycode == W)
 		move_player(info, 0, -1);
 	else if (keycode == A)

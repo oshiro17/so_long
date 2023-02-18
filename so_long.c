@@ -59,12 +59,17 @@ void get_map_info(t_info *info)
 	int img_height;
 
 	info->mlx = mlx_init();
-	info->win = mlx_new_window(info->mlx, 500, 500, "my_mlx");
 	info->coin = mlx_xpm_file_to_image(info->mlx, "./img/coin.xpm", &img_width,&img_height);
 	info->exit = mlx_xpm_file_to_image(info->mlx, "./img/exit.xpm", &img_width, &img_height);
 	info->floor = mlx_xpm_file_to_image(info->mlx, "./img/floor.xpm", &img_width, &img_height);
 	info->human = mlx_xpm_file_to_image(info->mlx, "./img/human.xpm", &img_width, &img_height);
 	info->block = mlx_xpm_file_to_image(info->mlx, "./img/block.xpm", &img_width, &img_height);
+	info->win = mlx_new_window(info->mlx, img_width * info->width, img_height * info->height, "my_mlx");
+}
+int	destroy_win(t_info *info)
+{
+	mlx_destroy_window(info->mlx, info->win);
+	exit (0);
 }
 
 int	main (int argc, char **argv)
@@ -93,6 +98,7 @@ int	main (int argc, char **argv)
     //     info.map = info.map->next;
     //}
 	// printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
+	mlx_hook(info.win, 17, 1L << 2, destroy_win, &info);
 	mlx_loop(info.mlx);
 	return (0);
 	exit (0);
