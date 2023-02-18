@@ -2,6 +2,7 @@
 
 void	put_initial(t_info *info)
 {
+	info->count = 0;
 	info->c_num = 0;
 	info->e_num = 0;
 	info->height = 0;

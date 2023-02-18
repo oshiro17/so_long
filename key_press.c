@@ -40,6 +40,7 @@ void move_player(t_info *info, int x, int y)
 
 int key_press(int keycode, t_info *info)
 {
+	info->count = info->count + 1;
 	if (keycode == ESC)
 		destroy_win(info);
 	else if (keycode == W)
@@ -50,5 +51,6 @@ int key_press(int keycode, t_info *info)
 		move_player(info, 0, 1);
 	else if (keycode == D)
 		move_player(info, 1, 0);
+	ft_printf("count:%d\n",info->count);
 	return (0);
 }
