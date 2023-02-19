@@ -31,22 +31,32 @@ void	make_list(char *line, t_map **map)
 	last->next->pre = last;
 }
 
+int	open_file(char *map_name)
+{
+	int fd;
+
+	fd = 0;
+	fd = open(map_name, O_RDONLY);
+	if (fd < 0)
+		put_error_exit("open errpr\n");
+	return (fd);
+}
+
 void get_map(char *map_name, t_map **map,t_info *info)
 {
 	char	*line;
 	int		fd;
 	int		i;
 	line = NULL;
-	fd = open(map_name, O_RDONLY);
-	if (fd < 0)
-		put_error_exit("open errpr\n");
+
+	fd = open_file(map_name);
 	i = -1;
 	info->height = 0;
 	while (line || i == -1)
 	{
 		line = get_next_line(fd);
 		if (!line && i == -1)
-			put_error_exit("中身なし\n");
+			put_error_exit("no contents\n");
 		else if (!line)
 			break ;
 		i = 0;
@@ -56,14 +66,5 @@ void get_map(char *map_name, t_map **map,t_info *info)
 		make_list(line,map);
 		info->height = info->height + 1;
 	}
-	
-	// t_map *map_tmp;
-	// map_tmp = (*map);
-	// printf("LINE == %d, FILE == %s\n", __LINE__, __FILE__);
-	// while(map_tmp)
-	// {
-	// 	printf("%s",map_tmp->line);
-	// 	map_tmp=map_tmp->next;
-	// } 
 	return ;
 }
