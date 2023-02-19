@@ -3,8 +3,9 @@ SRCS = so_long.c \
        put_error_exit.c \
 	   check_error_map.c \
 	   get_map.c \
-	   key_press.c\
-	   dfs.c
+	   key_press.c \
+	   dfs.c \
+	   check_component.c
 
 MAKE = make
 

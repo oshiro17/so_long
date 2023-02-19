@@ -73,4 +73,5 @@ void		get_map(char *map_name,t_map **map, t_info *info);
 int			key_press(int keycode,t_info *info);
 int			destroy_win(t_info *info);
 void		dfs(char *map_dfs, int x, int y, t_info *info);
+void		check_component(t_map *map, t_info *info);
 #endif
