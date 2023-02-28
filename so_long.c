@@ -82,6 +82,8 @@ int main(int argc, char **argv)
 	t_info info;
 
 	info.map = malloc(sizeof(t_map));
+	if (!info.map)
+		put_error_exit("malloc error");
 	put_initial(&info);
 	info.map->line = NULL;
 	info.map->next = NULL;
