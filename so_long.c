@@ -57,27 +57,46 @@ int first_print_image(t_info *info)
 	return (0);
 }
 
-void get_map_info(t_info *info)
+void	image_into_memory(t_info *info, int *img_width, int *img_height)
 {
-	int img_width;
-	int img_height;
-
-	info->mlx = mlx_init();
-	info->coin = mlx_xpm_file_to_image(info->mlx, "./img/coin.xpm", &img_width, &img_height);
-	info->exit = mlx_xpm_file_to_image(info->mlx, "./img/exit.xpm", &img_width, &img_height);
-	info->floor = mlx_xpm_file_to_image(info->mlx, "./img/floor.xpm", &img_width, &img_height);
-	info->human = mlx_xpm_file_to_image(info->mlx, "./img/human.xpm", &img_width, &img_height);
-	info->block = mlx_xpm_file_to_image(info->mlx, "./img/block.xpm", &img_width, &img_height);
-	info->win = mlx_new_window(info->mlx, img_width * info->width, img_height * info->height, "my_mlx");
+	info->coin = mlx_xpm_file_to_image(info->mlx, "./img/coin.xpm", img_width, img_height);
+	if (!info->coin)
+		put_error_exit("mlx error");
+	info->exit = mlx_xpm_file_to_image(info->mlx, "./img/exit.xpm", img_width, img_height);
+	if (!info->exit)
+		put_error_exit("mlx error");
+	info->floor = mlx_xpm_file_to_image(info->mlx, "./img/floor.xpm", img_width, img_height);
+	if (!info->floor)
+		put_error_exit("mlx error");
+	info->human = mlx_xpm_file_to_image(info->mlx, "./img/human.xpm", img_width, img_height);
+	if (!info->human)
+		put_error_exit("mlx error");
+	info->block = mlx_xpm_file_to_image(info->mlx, "./img/block.xpm", img_width, img_height);
+	if (!info->block)
+		put_error_exit("mlx error");
 }
 
-int destroy_win(t_info *info)
+void	get_map_info(t_info *info)
+{
+	int	img_width;
+	int	img_height;
+
+	info->mlx = mlx_init();
+	if (!info->mlx)
+		put_error_exit("malloc error");
+	image_into_memory(info, &img_width, &img_height);
+	info->win = mlx_new_window(info->mlx, img_width * info->width, img_height * info->height, "my_mlx");
+	if (!info->win)
+		put_error_exit("malloc error");
+}
+
+int	destroy_win(t_info *info)
 {
 	mlx_destroy_window(info->mlx, info->win);
 	exit(0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_info info;
 
