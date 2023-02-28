@@ -21,12 +21,12 @@ void	make_list(char *line, t_map **map)
 	new_map->line = line;
 	new_map->next = NULL;
 	new_map->pre = NULL;
+	last = find_lst_node(*map);
 	if (!(*map)->line)
 	{
-		(*map) = new_map;
+		(**map) = *new_map;
 		return ;
-	}
-	last = find_lst_node(*map);
+	}	
 	last->next = new_map;
 	last->next->pre = last;
 }
