@@ -33,7 +33,7 @@ void	check_all_one(char *line,t_info *info)
 	while (i < info->width)
 	{
 		if (line[i] != '1')
-			put_error_exit("not surrounded by 1");
+			put_error_exit("not surrounded by 1\n");
 		i++;
 	}
 	info->one_num = info->one_num + info->width;
