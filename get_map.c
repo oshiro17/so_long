@@ -18,7 +18,6 @@ void	make_list(char *line, t_map **map)
 	new_map = malloc(sizeof(t_map));
 	if (!new_map)
 		put_error_exit("sorry,malloc error");
-	printf("%p\n", new_map);
 	new_map->line = line;
 	new_map->next = NULL;
 	new_map->pre = NULL;
@@ -60,7 +59,7 @@ void get_map(char *map_name, t_map **map,t_info *info)
 	while (line || i == -1)
 	{
 		line = get_next_line(fd);
-		if (!line && i == -1)
+		if ((!line[0] || !line || line[0] == '\n') && i == -1)
 			put_error_exit("no contents\n");
 		else if (!line)
 			break ;
