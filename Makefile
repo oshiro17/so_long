@@ -5,7 +5,9 @@ SRCS = so_long.c \
 	   get_map.c \
 	   key_press.c \
 	   dfs.c \
-	   check_component.c
+	   check_component.c \
+	   main.c \
+	   check_error_utils.c
 
 MAKE = make
 

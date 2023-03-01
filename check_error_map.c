@@ -1,45 +1,16 @@
-# include "so_long.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_error_map.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: noshiro <noshiro@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 21:07:29 by noshiro           #+#    #+#             */
+/*   Updated: 2023/03/01 21:39:59 by noshiro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	check_extention(char *map_name)
-{
-	int			i;
-	int			k;
-	const char	*extention = ".ber";
-
-	i = 0;
-	k = 0;
-	while (map_name[i] && map_name[i] != '.')
-		i++;
-	if (map_name[i - 1] == '/' || i == 0)
-		put_error_exit("map name error");
-	while (map_name[i + k])
-	{
-		if (map_name[i + k] != extention[k])
-			put_error_exit("extention is not .ber");
-		k++;
-		if (map_name[i + k] == '.' && k == 4)
-		{
-			i = k + i;
-			k = 0;
-		}
-	}
-	if (k != 4)
-		put_error_exit("extention is not .ber");
-}
-
-void	check_width(t_map *map, t_info *info)
-{
-	int height;
-
-	height = info->height;
-	info->width = (int)ft_strlen(map->line);
-	while(height--)
-	{
-		if(info->width != (int)ft_strlen(map->line))
-			put_error_exit("not ractangle");
-		map = map->next;
-	}
-}
+#include "so_long.h"
 
 void	find_start(t_map *map, t_info *info)
 {
@@ -111,8 +82,8 @@ void	check_valid_path(t_map *map, t_info *info)
 void	check_error_map(char *map_name, t_map **map, t_info *info)
 {
 	check_extention(map_name);
-	get_map(map_name,map,info);
-	check_width(*map,info);
-	check_component(*map,info);
+	get_map(map_name, map, info);
+	check_width(*map, info);
+	check_component(*map, info);
 	check_valid_path(*map, info);
 }

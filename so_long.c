@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: noshiro <noshiro@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 20:33:44 by noshiro           #+#    #+#             */
+/*   Updated: 2023/03/01 22:41:47 by noshiro          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-void put_initial(t_info *info)
+void	put_initial(t_info *info)
 {
 	info->count = 0;
 	info->c_num = 0;
@@ -23,26 +35,31 @@ void put_initial(t_info *info)
 	info->map = NULL;
 }
 
-int put_image(t_info *info, char box, int x, int y)
+int	put_image(t_info *info, char box, int x, int y)
 {
 	if (box == '1')
-		mlx_put_image_to_window(info->mlx, info->win, info->block, IMG_SIZE * x, IMG_SIZE * y);
+		mlx_put_image_to_window(info->mlx, info->win,
+			info->block, IMG_SIZE * x, IMG_SIZE * y);
 	else if (box == '0')
-		mlx_put_image_to_window(info->mlx, info->win, info->floor, IMG_SIZE * x, IMG_SIZE * y);
+		mlx_put_image_to_window(info->mlx, info->win,
+			info->floor, IMG_SIZE * x, IMG_SIZE * y);
 	else if (box == 'E')
-		mlx_put_image_to_window(info->mlx, info->win, info->exit, IMG_SIZE * x, IMG_SIZE * y);
+		mlx_put_image_to_window(info->mlx, info->win,
+			info->exit, IMG_SIZE * x, IMG_SIZE * y);
 	else if (box == 'C')
-		mlx_put_image_to_window(info->mlx, info->win, info->coin, IMG_SIZE * x, IMG_SIZE * y);
+		mlx_put_image_to_window(info->mlx, info->win,
+			info->coin, IMG_SIZE * x, IMG_SIZE * y);
 	else if (box == 'P')
-		mlx_put_image_to_window(info->mlx, info->win, info->human, IMG_SIZE * x, IMG_SIZE * y);
+		mlx_put_image_to_window(info->mlx, info->win,
+			info->human, IMG_SIZE * x, IMG_SIZE * y);
 	return (x + 1);
 }
 
-int first_print_image(t_info *info)
+int	first_print_image(t_info *info)
 {
-	int x;
-	int y;
-	t_map *map;
+	int		x;
+	int		y;
+	t_map	*map;
 
 	map = info->map;
 	x = 0;
@@ -60,21 +77,26 @@ int first_print_image(t_info *info)
 
 void	image_into_memory(t_info *info, int *img_width, int *img_height)
 {
-	info->coin = mlx_xpm_file_to_image(info->mlx, "./img/coin.xpm", img_width, img_height);
+	info->coin = mlx_xpm_file_to_image(info->mlx,
+			"./img/coin.xpm", img_width, img_height);
 	if (!info->coin)
-		put_error_exit("mlx error");
-	info->exit = mlx_xpm_file_to_image(info->mlx, "./img/exit.xpm", img_width, img_height);
+		put_error_exit("mlx error\n");
+	info->exit = mlx_xpm_file_to_image(info->mlx,
+			"./img/exit.xpm", img_width, img_height);
 	if (!info->exit)
-		put_error_exit("mlx error");
-	info->floor = mlx_xpm_file_to_image(info->mlx, "./img/floor.xpm", img_width, img_height);
+		put_error_exit("mlx error\n");
+	info->floor = mlx_xpm_file_to_image(info->mlx,
+			"./img/floor.xpm", img_width, img_height);
 	if (!info->floor)
-		put_error_exit("mlx error");
-	info->human = mlx_xpm_file_to_image(info->mlx, "./img/human.xpm", img_width, img_height);
+		put_error_exit("mlx error\n");
+	info->human = mlx_xpm_file_to_image(info->mlx,
+			"./img/human.xpm", img_width, img_height);
 	if (!info->human)
-		put_error_exit("mlx error");
-	info->block = mlx_xpm_file_to_image(info->mlx, "./img/block.xpm", img_width, img_height);
+		put_error_exit("mlx error\n");
+	info->block = mlx_xpm_file_to_image(info->mlx,
+			"./img/block.xpm", img_width, img_height);
 	if (!info->block)
-		put_error_exit("mlx error");
+		put_error_exit("mlx error\n");
 }
 
 void	get_map_info(t_info *info)
@@ -84,39 +106,15 @@ void	get_map_info(t_info *info)
 
 	info->mlx = mlx_init();
 	if (!info->mlx)
-		put_error_exit("malloc error");
+		put_error_exit("malloc error\n");
 	image_into_memory(info, &img_width, &img_height);
-	info->win = mlx_new_window(info->mlx, img_width * info->width, img_height * info->height, "my_mlx");
+	info->win = mlx_new_window(info->mlx, img_width * info->width,
+			img_height * info->height, "my_mlx");
 	if (!info->win)
-		put_error_exit("malloc error");
+		put_error_exit("malloc error\n");
 }
 
-int	destroy_win(t_info *info)
-{
-	mlx_destroy_window(info->mlx, info->win);
-	exit(0);
-}
-
-int	main(int argc, char **argv)
-{
-	t_info info;
-
-	put_initial(&info);
-	if (argc < 2)
-		put_error_exit("no map.");
-	if (argc > 2)
-		put_error_exit("too many arguments");
-	check_error_map(argv[1], &(info.map), &info);
-	get_map_info(&info);
-	mlx_loop_hook(info.mlx, first_print_image, &info);
-	mlx_hook(info.win, 2, 1L << 0, &key_press, &info);
-	mlx_hook(info.win, 17, 1L << 2, &destroy_win, &info);
-	mlx_loop(info.mlx);
-	exit (0);
-	return (0);
-
-}
-__attribute__((destructor)) static void destructor()
-{
-	system("leaks -q so_long");
-}
+// __attribute__((destructor)) static void destructor()
+// {
+// 	system("leaks -q so_long");
+// }

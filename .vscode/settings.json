@@ -1,4 +1,8 @@
 {
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "get_next_line.h": "c",
+        "libft.h": "c"
+    }
 
 }
