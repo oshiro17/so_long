@@ -18,17 +18,22 @@ void	make_list(char *line, t_map **map)
 	new_map = malloc(sizeof(t_map));
 	if (!new_map)
 		put_error_exit("sorry,malloc error");
+	printf("%p\n", new_map);
 	new_map->line = line;
 	new_map->next = NULL;
 	new_map->pre = NULL;
 	last = find_lst_node(*map);
-	if (!(*map)->line)
+	if (!(*map))
 	{
-		(**map) = *new_map;
+		(*map) = new_map;
 		return ;
 	}	
-	last->next = new_map;
-	last->next->pre = last;
+	else
+	{
+		last->next = new_map;
+		last->next->pre = last;
+	}
+
 }
 
 int	open_file(char *map_name)

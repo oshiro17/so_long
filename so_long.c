@@ -20,6 +20,7 @@ void put_initial(t_info *info)
 	info->start_x = 0;
 	info->start_y = 0;
 	info->get_c = 0;
+	info->map = NULL;
 }
 
 int put_image(t_info *info, char box, int x, int y)
@@ -100,13 +101,13 @@ int	main(int argc, char **argv)
 {
 	t_info info;
 
-	info.map = malloc(sizeof(t_map));
-	if (!info.map)
-		put_error_exit("malloc error");
+	// info.map = malloc(sizeof(t_map));
+	// if (!info.map)
+		// put_error_exit("malloc error");
 	put_initial(&info);
-	info.map->line = NULL;
-	info.map->next = NULL;
-	info.map->pre = NULL;
+	// info.map->line = NULL;
+	// info.map->next = NULL;
+	// info.map->pre = NULL;
 	if (argc < 2)
 		put_error_exit("no map.");
 	if (argc > 2)
@@ -114,9 +115,14 @@ int	main(int argc, char **argv)
 	check_error_map(argv[1], &(info.map), &info);
 	get_map_info(&info);
 	mlx_loop_hook(info.mlx, first_print_image, &info);
-	mlx_hook(info.win, 2, 1L << 0, key_press, &info);
-	mlx_hook(info.win, 17, 1L << 2, destroy_win, &info);
+	mlx_hook(info.win, 2, 1L << 0, &key_press, &info);
+	mlx_hook(info.win, 17, 1L << 2, &destroy_win, &info);
 	mlx_loop(info.mlx);
+	exit (0);
 	return (0);
-	exit(0);
+
+}
+__attribute__((destructor)) static void destructor()
+{
+	system("leaks -q so_long");
 }

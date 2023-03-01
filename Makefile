@@ -52,5 +52,6 @@ re : fclean all
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: re
-
+norm:
+	python3 -m norminette
 .PHONY : all clean fclean re

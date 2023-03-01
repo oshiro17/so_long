@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: noshiro <noshiro@student.42.fr>            +#+  +:+       +#+        */
+/*   By: panti <panti@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 16:45:38 by noshiro           #+#    #+#             */
-/*   Updated: 2022/06/19 11:05:12 by noshiro          ###   ########.fr       */
+/*   Updated: 2023/03/01 05:24:26 by panti            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	**free_all_element(char **s, size_t idx)
+static char	**free_all_element(char **s, int idx)
 {
 	while (0 <= idx)
 	{
